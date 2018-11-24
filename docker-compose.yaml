@@ -2,13 +2,6 @@ version: '3'
 
 services:
 
-  db:
-    image: postgres
-    environment:
-      - POSTGRES_DB=codenar
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-
   mongodb:
         image: mongo:latest
         container_name: "mongodb"
@@ -20,6 +13,7 @@ services:
         ports:
             - 27017:27017
         command: mongod --smallfiles --logpath=/dev/null # --quiet
+
 
 
   web:
@@ -34,7 +28,7 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - mongodb
     environment:
       - DJANGO_READ_DOT_ENV_FILE=true
       - PGHOST=db
