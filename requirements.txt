@@ -17,6 +17,7 @@ structlog==18.1.0
 
 #Database
 redis==2.10.6
+djongo
 
 #Tools
 python-masscan==0.1.2
@@ -31,5 +32,3 @@ pytest-django==3.3.2
 pytest-sugar==0.9.1
 pytest-xdist==1.22.2
 whitenoise<3.4.0
-
-mongoengine==0.8.0

@@ -133,7 +133,7 @@ INSTALLED_APPS += [
     'rest_framework',
     'rest_framework_swagger',
     'django_extensions',
-    'django_mongoengine'
+    'djongo'
 ]
 
 # Our Apps
@@ -198,30 +198,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-MONGODB_DATABASES = {
-    "default": {
-        "name": env('MONGODB_NAME'),
-        "host": env('MONGODB_HOST'),
-        "password": env('MONGODB_PASSWORD'),
-        "username": env('MONGODB_USER'),
-        "tz_aware": True, # if you using timezones in django (USE_TZ = True)
-    },
+DATABASES = {
+   'default' : {
+      'ENGINE' : 'djongo',
+      'NAME' : env('MONGODB_NAME'),
+      'HOST': env('MONGODB_NAME'),
+      'PORT': int(env("MONGODB_PORT")),
+      'USER': env('MONGODB_USER'),
+      'PASSWORD': 'password',
+   }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django_db_geventpool.backends.postgresql_psycopg2',
-#         'HOST': env('PGHOST'),
-#         'NAME': env('PGDATABASE'),
-#         'PASSWORD': env('PGPASSWORD'),
-#         'PORT': int(env('PGPORT', default=5432)),
-#         'USER': env('PGUSER'),
-#         'CONN_MAX_AGE': 0,
-#         'OPTIONS': {
-#             'MAX_CONNS': 200,
-#         }
-#     }
-# }
 
 REDIS_HOST = env('REDIS_HOST', default="redis")
 
